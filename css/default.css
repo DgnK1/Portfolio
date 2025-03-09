@@ -11,6 +11,10 @@
 
 }
 
+html{
+    scroll-snap-type: y mandatory;
+}
+
 html, body{
     padding: 0;
     margin: 0;
@@ -50,25 +54,41 @@ h6{font-size: 16px;}
 
 .s1{
     background-color: var(--mainColor);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
     overflow: auto;
 }
 
-.intro-dialogue{
+.intro-section{
+    height: 96vh;
+    max-height: 100%;
+}
+
+.main-container{
     width: 1200px;
-    height: 200px;
+    max-width: 100%;
+
+    margin: 0 auto;
+}
+
+
+.intro-dialogue{
     margin: 0 auto;
 }
 
 .moon-wrapper{
     position: absolute; 
-    top: 10%;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
     z-index: 1;
-    width: 90%;
-    max-width: 1000px;
-    opacity: 0.9;
+
+    width: 900px;
+    max-width: 90%;
+    opacity: 0.8;
 }
+
 
 .dialogue {
     position: relative; /* Ensure text stays on top */
@@ -80,11 +100,6 @@ h6{font-size: 16px;}
     justify-self: center;
 }
 
-.main-container{
-    width: 1200px;
-    margin: 0 auto;
-}
-
 .main-bg{
     position: absolute;
     z-index: 0;
@@ -93,35 +108,67 @@ h6{font-size: 16px;}
 .main-intro{
     position: relative;
     z-index: 500;
+
+    transform: translateY(-10%);
 }
 
 .greeting-wrapper{
     display: grid;
 	text-align: center;
 	align-content: center;
-	min-height: 30em;
+    height: 48vh;
+}
 
-    background-image: url(../assets/shouting-bb.svg);
-    background-repeat: no-repeat;
-    background-position: 300px 1px;
-    background-size: 600px;
+.greeting-wrapper svg{
+    position: absolute;
+
+    left: 30%;
+    top: 10%; /* Center vertically */
+    
+    transform: translate(-50%, -50%); 
+
+    width: 450px;
+    max-width: 80%;
+
     transform: rotate(10deg);
 }
 
+.greeting-wrapper h2{
+    position: relative;
+
+    top: 80%;
+    left: 0;
+
+    transform: rotate(20deg);
+}
 
 .intro-wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
-        'nav-wrapper nav-wrapper'
         'left-column right-column'
     ;
 }
 
+.intro-wrapper svg{
+    position: absolute;
+    
+    top: 0;
+    left: 0;
+
+    width: 540px;
+    max-width: 80%;
+
+    left: 36%;
+    top: 40%; /* Center vertically */
+
+    transform: translate(-50%, -50%); 
+
+    transform: rotate(10deg);
+}
+
 .left-column{
     grid-area: left-column;
-    padding-top: 50px;
-    padding-bottom: 50px;
 }
 
 .profile-pic{
@@ -133,12 +180,7 @@ h6{font-size: 16px;}
 	object-fit: cover;
 	border:2px solid var(--borderColor);
 
-    transform: translateY(-40%);
-}
-
-#theme-options-wrapper{
-    display: flex;
-    justify-content: center;
+    transform: translateY(-16%);
 }
 
 .right-column{
@@ -147,17 +189,10 @@ h6{font-size: 16px;}
 }
 
 .preview{
-    display: grid;
 	text-align: center;
 	align-content: center;
-	min-height: 30em;
 
-    transform: translateX(-25%) translateY(-10%) rotate(10deg);
-
-    background-image: url(../assets/hori-sp-bb.svg);
-    background-repeat: no-repeat;
-    background-position: 1px -30px;
-    background-size: 600px;
+    transform: translateX(-30%) translateY(-10%) rotate(10deg);
 }
 
 .preview h2{
@@ -166,40 +201,11 @@ h6{font-size: 16px;}
     padding: 100px;
 }
 
-.corner{
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    border: 1.5px solid #17a2b8;
-    background-color: #fff;
-    position: absolute;
-}
-
-#corner-tl{
-    top: -5px;
-    left: -5px;
-}
-
-#corner-tr{
-    top: -5px;
-    right: -5px;
-}
-
-#corner-br{
-    bottom: -5px;
-    right: -5px;
-}
-
-#corner-bl{
-    bottom: -5px;
-    left: -5px;
-}
-
 .about-wrapper{
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	padding-bottom: 50px;
-	padding-top: 50px;
+
+    padding: 50px 0;
 	gap:100px;
 }
 
@@ -244,8 +250,7 @@ h6{font-size: 16px;}
 }
 
 .post-wrapper{
-    position: relative;
-
+    justify-self: center;
     width: 100%;
     height: 90vh;
 
@@ -266,6 +271,8 @@ h6{font-size: 16px;}
     border-radius: 20px; /* Smooth rounded corners */
     transition: box-shadow 0.2s ease-in-out; /* Smooth effect on hover */
     cursor: grab; /* Indicates draggable */
+
+    border: 2px solid var(--borderColor);
 }
 
 .post:active {
@@ -291,13 +298,13 @@ h6{font-size: 16px;}
 }
 
 .post-title{
-    color: black;
+    color: var(--mainText);
     font-weight: bold;
     margin: 5px 0;
 }
 
 .post-intro{
-    color: #4b5156;
+    color: var(--mainText);
     font-size: 12px;
     padding: 0 10px;
 }
@@ -306,8 +313,8 @@ h6{font-size: 16px;}
     position: absolute;
     align-self: center;
 
-    transform: translateX(-50%) translateY(-20%);
-    width: 500px;
+    transform: translateX(-50%) translateY(-4%);
+    width: 260px;
 }
 
 .p1 .post-details{
@@ -334,8 +341,8 @@ h6{font-size: 16px;}
     position: absolute;
     align-self: center;
 
-    transform: translateX(-46%) translateY(-6%);
-    width: 400px;
+    transform: translateX(-50%) translateY(-4%);
+    width: 260px;
 }
 
 .p3 .post-details{
@@ -349,7 +356,7 @@ h6{font-size: 16px;}
     align-self: center;
 
     transform: translateX(-46%) translateY(-6%);
-    width: 400px;
+    width: 280px;
 }
 
 .p4 .post-details{
