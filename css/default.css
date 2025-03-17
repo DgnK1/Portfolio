@@ -2,7 +2,7 @@
     --mainColor: black;
     --secondaryColor: white;
 
-    --borderColor: #c1c1c1;
+    --borderColor: white;
 
     --mainText: white;
     --secondaryText: black;
@@ -364,29 +364,6 @@ h6{font-size: 16px;}
 
     padding: 50px 60px 0;
 }
-
-
-#contact-form{
-	display: block;
-	max-width: 600px;
-	margin: 0 auto;
-	border: 1px solid var(--borderColor);
-	padding: 15px;
-	border-radius: 5px;
-	background-color: var(--mainColor);
-	margin-bottom: 50px;
-
-}
-
-#contact-form label{
-	line-height: 2.7em;
-}
-
-#contact-form textarea{
-	min-height: 100px;
-	font-size: 14px;
-}
-
 
 .input-field{
 	width: 100%;
